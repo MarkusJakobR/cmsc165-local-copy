@@ -59,16 +59,19 @@ int main() {
   // set the dimensions of the output image
   outputColorImage.resize(width, height);
 
+  // ===================== Creating Gray Image from Color =================
   // make an RGB version of the gray image
-  // for (y = 0; y < height; y++) {
-  //   for (x = 0; x < width; x++) {
-  //     // fetch the value from the gray image
-  //     grayValue = grayImage(x, y);
-  //     // make an RGB color from the gray value
-  //     outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
-  //   }
-  // }
+  for (y = 0; y < height; y++) {
+    for (x = 0; x < width; x++) {
+      // fetch the value from the gray image
+      grayValue = grayImage(x, y);
+      // make an RGB color from the gray value
+      outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
+    }
+  }
+  writeJpeg(outputColorImage, "images/output/recaplaza_gray.jpg", 90);
 
+  // ===================== Creating Color Image with PART gray ================
   // make the RGB version first
   for (y = 0; y < height; y++) {
     for (x = 0; x < width; x++) {
@@ -77,9 +80,8 @@ int main() {
     }
   }
   // make a PART of the image grayscale
-  for (y = startY; y < endY;
-       y++) { // instead of iterating all over the height and
-              // width, make a certain limit
+  for (y = startY; y < endY; y++) { // instead of iterating all over the height
+                                    // and width, make a certain limit
     for (x = startX; x < endX; x++) {
       // fetch the value from the gray image
       grayValue = grayImage(x, y);
@@ -99,27 +101,27 @@ int main() {
   // the last parameter is JPEG compression quality (1 = poor . . 100 = best)
   writeJpeg(outputColorImage, "images/output/recaplaza_part_gray.jpg", 90);
 
-  RGBImage outputColorImage2;
-
-  outputColorImage2 = inputColorImage; // copy kristen
-  // draw an orange diagonal line
-  for (x = 5; x < 200; x++)
-    outputColorImage2(x, x) = COLOR_RGB(255, 128, 0);
-
-  // halve the r,g,b of each pixel within a region
-  unsigned char r, g, b;
-  int pix;
-  for (x = 120; x < 220; x++) {
-    for (y = 30; y < 90; y++) {
-      pix = inputColorImage(x, y);
-      r = RED(pix);
-      g = GREEN(pix);
-      b = BLUE(pix);
-      outputColorImage2(x, y) = COLOR_RGB(r / 2, g / 2, b / 2);
-    }
-  }
-
-  writeJpeg(
-      outputColorImage2, "images/output/diagonal.jpg",
-      90); // the higher the third param, the smaller the file, lesser detail
+  // RGBImage outputColorImage2;
+  //
+  // outputColorImage2 = inputColorImage; // copy kristen
+  // // draw an orange diagonal line
+  // for (x = 5; x < 200; x++)
+  //   outputColorImage2(x, x) = COLOR_RGB(255, 128, 0);
+  //
+  // // halve the r,g,b of each pixel within a region
+  // unsigned char r, g, b;
+  // int pix;
+  // for (x = 120; x < 220; x++) {
+  //   for (y = 30; y < 90; y++) {
+  //     pix = inputColorImage(x, y);
+  //     r = RED(pix);
+  //     g = GREEN(pix);
+  //     b = BLUE(pix);
+  //     outputColorImage2(x, y) = COLOR_RGB(r / 2, g / 2, b / 2);
+  //   }
+  // }
+  //
+  // writeJpeg(
+  //     outputColorImage2, "images/output/diagonal.jpg",
+  //     90); // the higher the third param, the smaller the file, lesser detail
 }

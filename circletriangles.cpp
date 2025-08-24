@@ -6,9 +6,10 @@
 
 #include "image.h"
 #include "jpegio.h"
+#include "math.h"
 
 int main() {
-  int x, y, height, width, triadjacentX1, triadjacentX2;
+  int x, y, height, width, triadjacentX1, triadjacentX2, distanceX, distanceY;
 
   int triColor = COLOR_RGB(255, 153, 51);
   int circColor = COLOR_RGB(255, 192, 203);
@@ -20,6 +21,10 @@ int main() {
   int tristartX2 = 260;
   int tristartY2 = 215;
   int triendY2 = 265;
+
+  int centerX = 198;
+  int centerY = 268;
+  int radius = 100;
 
   RGBImage inputimage, outputimage;
 
@@ -52,6 +57,15 @@ int main() {
   }
 
   // circle in the head
+  for (y = centerY - radius; y <= centerY + radius; y++) {
+    distanceY = y - centerY; // compute how far the row from the center
+    distanceX = static_cast<int>(sqrt(
+        radius * radius - distanceY * distanceY)); // equation of a circle in 2D
+
+    outputimage(centerX - distanceX, y) =
+        circColor; // two x-coordinates left and right
+    outputimage(centerX + distanceX, y) = circColor;
+  }
 
   writeJpeg(outputimage, "images/output/recaplaza1_draw.jpg", 70);
 }

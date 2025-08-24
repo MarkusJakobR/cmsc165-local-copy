@@ -9,10 +9,10 @@
 int main() {
   int x, y, height1, height2, width1, width2, cycles, max_cycles = 10, start_x,
                                                       end_x;
-  double gray_percent, curr_gray_percent;
+  double t, Rn, Gn, Bn;
   RGBImage inputColorImage1, inputColorImage2, outputColorImage;
   Image<unsigned char> grayImage;
-  unsigned char grayValue;
+  unsigned char grayValue, R, G, B;
 
   // read the two images to get their size
   readJpeg(inputColorImage1, "images/recaplaza1_happy_resized.jpg");
@@ -32,34 +32,43 @@ int main() {
   // get the gray values for the right image
   makeGrayFromRGB(grayImage, inputColorImage2);
 
-  // compute for the percentage of the gray, to know how much gray must be in 1
-  // picture out of the max cycles (10)
-  gray_percent = static_cast<double>(width2 - width2 / 2) / max_cycles;
-  curr_gray_percent = 0.0;
-
   // cycle through the required images
   for (cycles = 1; cycles <= max_cycles; cycles++) {
 
-    // compute for the starting x and ending x, where the ending x is between
-    // the minimum of width2 or the starting x (half) + current gray percentage
-    // and the constant gray percentage
-    start_x = width2 / 2;
-    end_x = std::min(width2, start_x + static_cast<int>(std::ceil(
-                                           curr_gray_percent + gray_percent)));
+    // compute the grayscale percentage for this cycle
+    t = static_cast<double>(cycles) / max_cycles;
 
-    // with the values for the start_x and end_x, convert them to grayscale
-    for (x = start_x; x < end_x; x++) {
+    // iterate only through the right half of the image
+    for (x = width2 / 2; x < width2; x++) {
       for (y = 0; y < height2; y++) {
+
+        // take the values of RGB for the current pixel
+        R = RED(inputColorImage2(x, y));
+        G = GREEN(inputColorImage2(x, y));
+        B = BLUE(inputColorImage2(x, y));
+
+        // take the grayvalue from the complete gray image map
         grayValue = grayImage(x, y);
-        outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
+
+        // compute for the new value of the RGB of the pixel using the formula
+        // for linear interpolation
+        // e.g. R' = (1 - t) R + t * gray
+        Rn = (1.0 - t) * R + t * grayValue;
+        Gn = (1.0 - t) * G + t * grayValue;
+        Bn = (1.0 - t) * B + t * grayValue;
+
+        // change the pixel in the output image with the new value
+        outputColorImage(x, y) =
+            COLOR_RGB(static_cast<unsigned char>(std::round(Rn)),
+                      static_cast<unsigned char>(std::round(Gn)),
+                      static_cast<unsigned char>(std::round(Bn)));
       }
     }
 
     // create custom filename for each image, changing the number based on the
     // cycle
     std::string filename =
-        "images/output/recaplaza_half_strip_" + std::to_string(cycles) + ".jpg";
+        "images/output/recaplaza_half_lerp_" + std::to_string(cycles) + ".jpg";
     writeJpeg(outputColorImage, (char *)filename.c_str(), 90);
-    curr_gray_percent = curr_gray_percent + gray_percent;
   }
 }
