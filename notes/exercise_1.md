@@ -35,3 +35,9 @@ The output is made by passing the outputColorImage data to the writeJpeg() funct
 2. Change the starting and ending coordinates for X and Y.
 3. startX = 135, endX = 300, startY = 135, endY = 350
 4. The output image creates a line by looping on the pixels in a vertical or horizontal fashion. It then appends a certain color to the certain pixel coordinate, creating a "line".
+
+# Journal Output
+
+### 1. Retain the original values found in the sample codes. Then, compare the outputs generated using the sample image and your new selfie image. What have you observed?
+
+I
