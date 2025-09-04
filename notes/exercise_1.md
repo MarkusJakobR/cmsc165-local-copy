@@ -18,7 +18,7 @@ Now that the grayImage() has the gray values for each pixel, it can now be used 
 
 ### How to write the output to a color JPEG image?
 
-The output is made by passing the outputColorImage data to the writeJpeg() function alongside the quality that we want the image to have. Inside the writeJpeg() function, it calls the write_JPEG_file() function which consists of multiple steps of creating an output. First, it allocates and initializes a JPEG compression object. Then, it specifies the data destination or where it will be saved. It then sets the parameters for compression such as the width, height, color components per pixel, and the color space (which is RGB in our case). Next, it starts the compressor and the scan lines are written. The scanlines are a row of pixels that are being compressed and written to the final image file. Once done, the image buffer (used for each scanline) is will be deleted to clear memory.
+The output is made by passing the outputColorImage data to the writeJpeg() function alongside the quality that we want the image to have. Inside the writeJpeg() function, it calls the write_JPEG_file() function which consists of multiple steps of creating an output. First, it allocates and initializes a JPEG compression object. Then, it specifies the data destination or where it will be saved. It then sets the parameters for compression such as the width, height, color components per pixel, and the color space (which is RGB in our case). Next, it starts the compressor and the scan lines are written. The scanlines are a row of pixels that are being compressed and written to the final image file. Once done, the image buffer (used for each scanline) will be deleted to clear memory.
 
 ## Exercise 1-2: Converting a rectangular PART of a color image to grayscale
 
@@ -39,5 +39,3 @@ The output is made by passing the outputColorImage data to the writeJpeg() funct
 # Journal Output
 
 ### 1. Retain the original values found in the sample codes. Then, compare the outputs generated using the sample image and your new selfie image. What have you observed?
-
-I
