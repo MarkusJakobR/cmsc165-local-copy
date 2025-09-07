@@ -18,12 +18,12 @@ int main() {
   double redAdjusted, greenAdjusted, blueAdjusted;
   int pix;
   RGBImage inputimage, outputimage;
-
+  char outputImageFilename[100];
   // this is the brightness adjustment parameter
   // whose range is -1.0 (very dark) to 1.0 (very bright)
   //   > 0 will brighten
   //  <  0 will  darken
-  double brightAdjust = 0.2;
+  double brightAdjust = 0.5;
 
   // read the JPEG file
   readJpeg(inputimage, "images/low_light.jpg");
@@ -66,6 +66,8 @@ int main() {
     }
   }
   // write the output to a JPEG file
-  writeJpeg(outputimage, "images/output/bright_low_light.jpg", 70);
+  sprintf(outputImageFilename, "images/output/exer_2/bright%03d_lowlight.jpg",
+          (int)(100 * brightAdjust));
+  writeJpeg(outputimage, outputImageFilename, 70);
   // the last parameter is quality (1..100 = best)
 }

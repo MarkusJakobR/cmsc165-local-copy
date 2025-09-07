@@ -35,3 +35,17 @@
 5. Adjust the RGB values for each pixel with the formula pow(RGB, gamma).
 6. Scale the value back to 255 and set the new pixel value to the output image
 7. Write the new jpeg
+
+## EXER 2-4: histeq1.cpp and filter.c
+
+### How does it work?
+
+1. First, the image is read to get the values of its pixels.
+2. Initialize variables for the starting X and Y, ending X and Y. They are made in case you want to specify the region you want to equalize.
+3. Compute the gray scale of the region of the image. These will be used to create a histogram later on.
+4. Call the histogramEqualize(), passing the start and end points, histeq Image, gray values, and percent where it maximizes the contrast.
+5. In histogramEqualize(), compute for the histogram within the endpoints. Next, compute for the number of samples by computing for the area of pixels used.
+6. Then, compute for the new hist values by getting the cumulative probability of a hist value. This spreads out the most frequent intensity values over a wider range, increasing the overall contrast
+7. If percent is less than 100, adjust the hist values depending on the percent
+8. Apply the new gray values to histeq.
+9. Create the new image by applying the values of histeq to the RGB values
