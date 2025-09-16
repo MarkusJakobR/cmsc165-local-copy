@@ -2,11 +2,39 @@
 
 ### Filter for outdoor image
 
-./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/median_so.jpg" "images/output/mean_so.jpg"
+#### filter width = 15
+
+./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median15_so.jpg" "images/output/exer_3/mean15_so.jpg" 15
+
+#### filter width = 25
+
+./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median25_so.jpg" "images/output/exer_3/mean25_so.jpg" 25
+
+#### filter width = 7
+
+./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median7_so.jpg" "images/output/exer_3/mean7_so.jpg" 7
 
 ### Filter for indoor image
 
-./filter1.out "images/selfie_indoor_resized.jpg" "images/output/median_si.jpg" "images/output/mean_si.jpg"
+#### filter width = 15
+
+./filter1.out "images/selfie_indoor_resized.jpg" "images/output/exer_3/median15_si.jpg" "images/output/exer_3/mean15_si.jpg" 15
+
+#### filter width = 25
+
+./filter1.out "images/selfie_indoor_resized.jpg" "images/output/exer_3/median25_si.jpg" "images/output/exer_3/mean25_si.jpg" 25
+
+#### filter width = 7
+
+./filter1.out "images/selfie_indoor_resized.jpg" "images/output/exer_3/median7_si.jpg" "images/output/exer_3/mean7_si.jpg" 7
+
+### Extreme Filter Width
+
+#### filter width = 100
+
+./filter1.out "images/selfie_indoor_resized.jpg" "images/output/exer_3/median100_si.jpg" "images/output/exer_3/mean100_si.jpg" 100
+
+./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median100_so.jpg" "images/output/exer_3/mean100_so.jpg" 100
 
 # EXERCISE 3
 
@@ -25,3 +53,8 @@
 7. Create the new output image with the new pixels.
 
 #### Mean Filter
+
+1. Convert image to grayscale to get the gray values.
+2. Create a mask for the mean filter.
+3. Call the convolveDouble function which computes for the average of pixels on the neighborhood of the target pixel.
+4. Change the value of the target pixel with the new one.
