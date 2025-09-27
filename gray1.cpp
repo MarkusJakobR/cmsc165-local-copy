@@ -46,7 +46,7 @@ int main() {
   grayImage2 = grayImage; // make a copy of the image
 
   // read the JPEG file
-  readJpeg(inputColorImage, "images/recaplaza1_resized.jpg");
+  readJpeg(inputColorImage, "images/recaplaza_exer4.jpg");
   height = inputColorImage.height();
   width = inputColorImage.width();
   printf("The image width is %d and height is %d \n", width, height);
@@ -69,26 +69,27 @@ int main() {
       outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
     }
   }
-  writeJpeg(outputColorImage, "images/output/recaplaza_gray.jpg", 90);
+  writeJpeg(outputColorImage, "images/output/exer_4/original_gray.jpg", 100);
 
   // ===================== Creating Color Image with PART gray ================
   // make the RGB version first
-  for (y = 0; y < height; y++) {
-    for (x = 0; x < width; x++) {
-      // make an RGB color from the gray value
-      outputColorImage(x, y) = inputColorImage(x, y);
-    }
-  }
+  // for (y = 0; y < height; y++) {
+  //   for (x = 0; x < width; x++) {
+  //     // make an RGB color from the gray value
+  //     outputColorImage(x, y) = inputColorImage(x, y);
+  //   }
+  // }
   // make a PART of the image grayscale
-  for (y = startY; y < endY; y++) { // instead of iterating all over the height
-                                    // and width, make a certain limit
-    for (x = startX; x < endX; x++) {
-      // fetch the value from the gray image
-      grayValue = grayImage(x, y);
-      // make an RGB color from the gray value
-      outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
-    }
-  }
+  // for (y = startY; y < endY; y++) { // instead of iterating all over the
+  // height
+  //                                   // and width, make a certain limit
+  //   for (x = startX; x < endX; x++) {
+  //     // fetch the value from the gray image
+  //     grayValue = grayImage(x, y);
+  //     // make an RGB color from the gray value
+  //     outputColorImage(x, y) = COLOR_RGB(grayValue, grayValue, grayValue);
+  //   }
+  // }
   // restore the color of a "strip"
   // for (y = 50; y < 125; y++) {
   //   for (x = 0; x < width; x++) {
@@ -99,7 +100,7 @@ int main() {
 
   // write the output image to a JPEG file
   // the last parameter is JPEG compression quality (1 = poor . . 100 = best)
-  writeJpeg(outputColorImage, "images/output/recaplaza_part_gray.jpg", 90);
+  // writeJpeg(outputColorImage, "images/output/recaplaza_part_gray.jpg", 90);
 
   // RGBImage outputColorImage2;
   //
