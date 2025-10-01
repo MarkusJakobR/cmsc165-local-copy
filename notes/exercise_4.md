@@ -10,6 +10,13 @@
 
 ./sharp1.out "images/recaplaza_exer4.jpg" 1
 
+./sharp1.out "images/blurred1.jpg" 15 25 5
+./sharp1.out "images/blurred2.jpg" 3 25 5
+./sharp1.out "images/blurred3.jpg" 3 25 5
+
+./sharp1.out "images/blurred1.jpg" 1
+./sharp1.out "images/recaplaza_exer4.jpg" 1
+
 ## Algorithm Explanation
 
 ### Unsharp Mask Function

@@ -6,6 +6,8 @@
 
 ./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median15_so.jpg" "images/output/exer_3/mean15_so.jpg" 15
 
+./filter1.out "images/recaplaza_exer4.jpg" "images/output/exer_4/orig_median.jpg" "images/output/exer_4/orig_blur.jpg" 15
+
 #### filter width = 25
 
 ./filter1.out "images/selfie_outdoor_resized.jpg" "images/output/exer_3/median25_so.jpg" "images/output/exer_3/mean25_so.jpg" 25
