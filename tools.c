@@ -161,8 +161,8 @@ void rotateRGB(RGBImage &outputImage, const RGBImage &inputImage,
 
   width = inputImage.width();
   height = inputImage.height();
-  outputImage.resize(width, height);
-  outputImage.setAll(COLOR_RGB(255, 255, 255));
+  // outputImage.resize(width, height);
+  // outputImage.setAll(COLOR_RGB(255, 255, 255));
 
   for (xp = 0; xp < width; xp++) {
     for (yp = 0; yp < height; yp++) {
