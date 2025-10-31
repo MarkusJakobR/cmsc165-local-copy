@@ -195,4 +195,6 @@ void makeRGBFromBinary(RGBImage &colorOutputRGB, Image<unsigned char> &binary1,
 
 int fileExist(char *fileName);
 
+void extractFilename(char *extractedFilename, const char *originalFilename);
+
 #endif // TOOLS_H

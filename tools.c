@@ -469,6 +469,17 @@ void makeRGBFromBinary(RGBImage &colorOutputRGB, Image<unsigned char> &binary1,
   }
 }
 
+void extractFilename(char *extractedFilename, const char *originalFilename) {
+  char baseName[200];
+  strcpy(baseName, originalFilename);
+
+  char *dot = strrchr(baseName, '.');
+  if (dot)
+    *dot = '\0';
+
+  char *slash = strrchr(baseName, '/');
+  strcpy(extractedFilename, slash ? slash + 1 : baseName);
+}
 /*
 void overlayStringRGB( RGBImage & outputImageRGB, char *inputString, int &
 xCursor, int & yCursor, int size){

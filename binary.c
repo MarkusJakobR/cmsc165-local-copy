@@ -500,7 +500,6 @@ int ConnectedComponents::analyzeBinary(const Image<unsigned char> &binary,
   Image<int> queue, connect; // Image<> class is used as a data structure
   int numConnect, qLimit = 3000, w, h, i, x, y, cx, cy, p, npix, c, s, startQ,
                   endQ, currentEndQ, tag;
-
   if (connectType == FOUR_CONNECTED) {
     connect.resize(2, 4);
     connect[0] = 0;
@@ -532,7 +531,6 @@ int ConnectedComponents::analyzeBinary(const Image<unsigned char> &binary,
     connect[15] = 1;
     numConnect = 8;
   }
-
   queue.resize(qLimit, 1);
   w = binary.width();
   h = binary.height();

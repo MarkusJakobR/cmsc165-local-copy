@@ -9,6 +9,7 @@
 #include "image.h"
 #include "jpegio.h"
 #include "stdio.h"
+#include "tools.h"
 
 void binaryOutline(Image<unsigned char> &outline,
                    const Image<unsigned char> &dilation,
@@ -100,20 +101,22 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  // write the output to a JPEG file
-  // find the name of the jpg file for better naming
-  char baseName[200];
-  strcpy(baseName, argv[1]);
-
-  // find the dot and remove the extension of the image
-  char *dot = strrchr(baseName, '.');
-  if (dot)
-    *dot = '\0';
-
-  // remove the slashes and find the rightmost name which is the name of the
-  // image
-  char *slash = strrchr(baseName, '/');
-  char *filename = slash ? slash + 1 : baseName;
+  // // write the output to a JPEG file
+  // // find the name of the jpg file for better naming
+  // char baseName[200];
+  // strcpy(baseName, argv[1]);
+  //
+  // // find the dot and remove the extension of the image
+  // char *dot = strrchr(baseName, '.');
+  // if (dot)
+  //   *dot = '\0';
+  //
+  // // remove the slashes and find the rightmost name which is the name of the
+  // // image
+  // char *slash = strrchr(baseName, '/');
+  // char *filename = slash ? slash + 1 : baseName;
+  char filename[200];
+  extractFilename(filename, argv[1]);
 
   sprintf(outputFilename1, "images/output/exer_7/clean/%s_binary_%03d.jpg",
           filename, intensityThreshold);
