@@ -72,3 +72,21 @@ Firstly, the code iterates through a subset of frames (usually depending on the 
 #### How does it work:
 
 First, it creates a static image of the scene to use as a reference pattern or the template. The moving objects will be discarded leaving only the scene itself. This is done by having the gray median which will have the intensity values of the static background. Next, occlusion detection using normalized cross-correlation is done by having a region of interest for both the current frame and the static background template. If there is high correlation, then the ROI on the current frame is very similar to the background template thus there is no change. If the correlation is low, then the ROI on the current frame is very different to the background template thus there is an occlusion. This happens when a car enters the ROI. The history of display values and where an occlusion occurred is drawn to the image, and the ROI box also turns into a different color when a change is detected.
+
+---
+
+# Journal Questions
+
+## 1. What are the possible situations that could confuse the motion tracker in mtrack1.cpp? In ctrack1.cpp?
+
+- In mtrack1.cpp, a possible situation of confusion for the motion tracker is when there are multiple moving objects in the vicinity of the currently tracked object. It is possible for the tracker to jump to another object since it does not know which of the other objects is the one they are originally tracking. Another is when there is a large shadow casted over the object that will increase weight in the motion image. This weight may mislead the tracker, losing the actual object. There is also the problem of the object being fully stationary in a few frames which will make the tracker stop tracking the object or go to another object in the vicinity that has movement.
+
+- In ctrack1.cpp, a most possible confusing situation is when a similarly colored object gets near the search vicinity. The tracker may jump to the other object since they have the same color and it satisfies the color set. Additionally, if the lighting and shadows of the image change significantly, it may affect the color of the object which can result to losing the tracked object.
+
+## 2. How does corr1.cpp work?
+
+- First, it creates a static image of the scene to use as a reference pattern or the template. The moving objects will be discarded leaving only the scene itself. This is done by having the gray median which will have the intensity values of the static background. Next, occlusion detection using normalized cross-correlation is done by having a region of interest for both the current frame and the static background template. If there is high correlation, then the ROI on the current frame is very similar to the background template thus there is no change. If the correlation is low, then the ROI on the current frame is very different to the background template thus there is an occlusion. This happens when a car enters the ROI. The history of display values and where an occlusion occurred is drawn to the image, and the ROI box also turns into a different color when a change is detected.
+
+## 3. Enumerate real-world problems where you could apply these techniques.
+
+- Some real-word problems that these techniques are applied to are traffic monitoring and flow analysis, just like those used in NCAP where they tracked the vehicles entering a certain lane while also taking note of their plate number. It can also be used for surveillance when it detects that something is moving when there shouldn't be, something like an intrusion detection. It can also be used in industry quality control situations where they can automate if something is missing from a certain product by comparing it to the correct one.
