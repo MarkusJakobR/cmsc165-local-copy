@@ -48,8 +48,8 @@ int main(int argc, char *argv[]) {
     objectEndY = 147;
   }
 
-  system("mkdir images/output/exer_12/motiontrack");
-  strcpy(outputFileFormat, "images/output/exer_12/motiontrack/%04d.jpg");
+  system("mkdir images/output/exer_12/motiontrack_car");
+  strcpy(outputFileFormat, "images/output/exer_12/motiontrack_car/%04d.jpg");
 
   int numFrames = frameEnd - frameStart + 1;
   int f, m, n, x, y, xt, yt, xtp, ytp, width, height;

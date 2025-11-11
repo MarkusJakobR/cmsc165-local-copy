@@ -90,3 +90,49 @@ First, it creates a static image of the scene to use as a reference pattern or t
 ## 3. Enumerate real-world problems where you could apply these techniques.
 
 - Some real-word problems that these techniques are applied to are traffic monitoring and flow analysis, just like those used in NCAP where they tracked the vehicles entering a certain lane while also taking note of their plate number. It can also be used for surveillance when it detects that something is moving when there shouldn't be, something like an intrusion detection. It can also be used in industry quality control situations where they can automate if something is missing from a certain product by comparing it to the correct one.
+
+---
+
+## Create video from multiple image frames using this command:
+
+ffmpeg -framerate 25 -i <directory with the images> -c:v libx264 -crf 23 -pix_fmt yuv420p <output name/directory>
+
+### input videos
+
+#### student
+
+ffmpeg -framerate 25 -i student%04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p student_input.mp4
+
+#### redblue
+
+ffmpeg -framerate 25 -i redblue%04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p redblue_input.mp4
+
+#### kids
+
+ffmpeg -framerate 25 -i %04d.jpeg -c:v libx264 -crf 23 -pix_fmt yuv420p kids_input.mp4
+
+#### car1
+
+ffmpeg -framerate 25 -i %04d.jpeg -c:v libx264 -crf 23 -pix_fmt yuv420p car1_input.mp4
+
+### output videos
+
+#### backsub student
+
+ffmpeg -framerate 25 -i backsub%04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p backsub_student_out.mp4
+
+#### color track redblue
+
+ffmpeg -framerate 25 -i %04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p ctrack_redblue_out.mp4
+
+#### motion track kids
+
+ffmpeg -framerate 25 -i %04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p mtrack_kids_out.mp4
+
+#### motion track car
+
+ffmpeg -framerate 25 -i %04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p mtrack_car_out.mp4
+
+#### correlation sixlanes
+
+ffmpeg -framerate 25 -i %04d.jpg -c:v libx264 -crf 23 -pix_fmt yuv420p corr_sixlanes_out.mp4
